@@ -2,6 +2,8 @@
 
 HacX 2023 Team wenkAI
 
+https://prism.ler.sg
+
 ## Developing
 
 Start a development server:

@@ -28,8 +28,8 @@ async function init() {
     const tempStd = d3.randomNormal(0.4, 0.2)
     inmates.forEach(inmate => {
         // randomly generate random number generators
-        const heartRand = d3.randomNormal(heartMean(), heartStd())
-        const tempRand = d3.randomNormal(tempMean(), tempStd())
+        const heartRand = d3.randomNormal(heartMean(), Math.max(heartStd(),1))
+        const tempRand = d3.randomNormal(tempMean(), Math.max(tempStd(),0.1))
         const fallRand = d3.randomInt(8)
 
         const heartrate = Array(60).fill(0).map(() => heartRand())
@@ -102,6 +102,6 @@ export async function GET() {
     }
     const inmates = Object.values(data).map(i => i.inmate)
     inmates.sort((a,b) => b.urgency - a.urgency )
-    await wait(300) // artificial delay for testing
+    // await wait(300) // artificial delay for testing
     return json({ inmates })
 }
