@@ -2,6 +2,7 @@
 	import { writable } from 'svelte/store';
     import { onMount, setContext } from 'svelte';
     import { fly } from 'svelte/transition'
+    import { page } from '$app/stores';
     import type { Inmate } from '$lib/inmates';
     import Clock from '$lib/Clock.svelte';
     import "../app.css";
@@ -9,7 +10,8 @@
 
     export let data
 
-    // (data.inmates as Inmate[]).forEach()
+    const title = writable('')
+    setContext('title', title)
 
     const interval = 60_000
     let timeout: number | NodeJS.Timeout | undefined = undefined
@@ -46,6 +48,8 @@
     }
 
     onMount(schedule)
+
+    
     
 </script>
 
@@ -88,4 +92,12 @@
     </footer>
 </div>
 
+<svelte:head>
+    <title>
+        { alerts?.length > 0 ? `(${alerts.length}) ` : ``}
+        { $page.data.title ? $page.data.title : '' }
+        { $page.data.title && !$page.data.override ? '@' : '' }
+        { $page.data.override ? '' : 'Changi Prison' } | PrisM
+    </title>
+</svelte:head>
 <svelte:body on:click={ clickOutside }/>

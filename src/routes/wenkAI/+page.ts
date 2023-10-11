@@ -4,5 +4,5 @@ export function load({ url }) {
     interval = isFinite(interval) ? interval : 250
     interval = Math.max(interval, 100)
     console.log(param, parseInt(param), interval)
-    return { interval }
+    return { interval, title: 'Team wenkAI', override: true }
 }
