@@ -57,11 +57,10 @@
     <header>
         <section class="p-4 sm:p-8 flex flex-col md:flex-row gap-2 justify-between items-stretch md:items-center">
             <div class="flex items-center gap-2 relative">
-                <svg class="stroke h-8 w-8 text-gray-300 shrink-0" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" stroke-width="0" fill="currentColor"></path>
-                </svg>
-                <h3 class="text-4xl font-bold grow"><a href="/">Changi Prison</a></h3>
+                <a class="flex items-center gap-3" href="/">
+                    <img class="h-8 w-8" src="/favicon96.png" alt=""/>
+                    <h3 class="text-4xl font-bold grow">Changi Prison</h3>
+                </a>
                 <button on:click|stopPropagation={ () => showing = !showing } class="px-3 py-1 ml-2 flex items-center gap-2 bg-gray-900 border-gray-800 border rounded-md">
                     <svg class="fill-red-500 h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

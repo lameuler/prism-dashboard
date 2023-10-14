@@ -6,7 +6,7 @@
     import type { Writable } from 'svelte/store';
 
     export let seeAll: string = ""
-    export let limit: number = -1
+    export let limit: number | undefined = undefined
 
     const inmates = getContext<Writable<{ inmates: Inmate[], refreshing: boolean }>>('inmates')
     const refresh = getContext<() => void>('inmates-refresh')
