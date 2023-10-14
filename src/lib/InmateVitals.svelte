@@ -20,15 +20,17 @@
 <div class="bg-gray-900 rounded-xl px-4 sm:px-8 py-2 ring-red-800" class:ring={ inmate.alerts }>
     <div class="flex flex-col sm:flex-row items-stretch grid-rows-1">
         <div class="flex items-center h-full gap-1 grow sm:mr-4">
-            <svg class="w-10 h-10 p-1 text-gray-500 hover:text-gray-200" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M4 8v-2a2 2 0 0 1 2 -2h2"></path>
-                <path d="M4 16v2a2 2 0 0 0 2 2h2"></path>
-                <path d="M16 4h2a2 2 0 0 1 2 2v2"></path>
-                <path d="M16 20h2a2 2 0 0 0 2 -2v-2"></path>
-                <path d="M12 11l0 .01"></path>
-                <path d="M12 18l-3.5 -5a4 4 0 1 1 7 0l-3.5 5"></path>
-            </svg>
+            <a href="/cameras/{inmate.camera}">
+                <svg class="w-10 h-10 p-1 text-gray-500 hover:text-gray-200" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M4 8v-2a2 2 0 0 1 2 -2h2"></path>
+                    <path d="M4 16v2a2 2 0 0 0 2 2h2"></path>
+                    <path d="M16 4h2a2 2 0 0 1 2 2v2"></path>
+                    <path d="M16 20h2a2 2 0 0 0 2 -2v-2"></path>
+                    <path d="M12 11l0 .01"></path>
+                    <path d="M12 18l-3.5 -5a4 4 0 1 1 7 0l-3.5 5"></path>
+                </svg>
+            </a>
             <span class="font-bold text-xl grow">{ inmate.name }</span>
             <PingAlert ping={ inmate.fall_alert && !refreshing }>
                 <svg class="w-10 h-10 p-1 red" class:invisible={ !inmate.fall_alert } viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

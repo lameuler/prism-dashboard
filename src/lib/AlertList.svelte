@@ -22,7 +22,7 @@
         <div class="grow"/>
         <a class="font-medium shrink-0 text-blue-500 self-justify-end" href="/inmates" on:click={ close }>See all vitals</a>
     </div>
-    <div class="max-h-56 flex flex-col px-3 py-1 gap-2 overflow-y-scroll">
+    <div class="max-h-72 flex flex-col px-3 py-1 gap-2 overflow-y-scroll">
         {#each alerts as inmate }
             <VitalsAlerts {inmate} />
         {/each}

@@ -17,6 +17,7 @@ export interface Inmate extends Person {
     resp_alert?: string | boolean
     temp_alert?: string | boolean
     urgency: number
+    camera: string
 }
 
 export function generatePeople(count: number) {
@@ -25,7 +26,7 @@ export function generatePeople(count: number) {
         const sex = faker.person.sex() as 'female' | 'male'
         people.push({
             sex: sex[0].toUpperCase(),
-            id: faker.string.nanoid(16),
+            id: faker.string.nanoid(8),
             name: faker.person.firstName(sex) + ' ' + faker.person.lastName(sex)
         })
     }

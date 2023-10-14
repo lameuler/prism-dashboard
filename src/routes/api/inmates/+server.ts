@@ -3,6 +3,7 @@ import fs from 'fs/promises'
 import { generatePeople, type Inmate, type Person } from '$lib/inmates'
 import * as d3 from 'd3'
 import wait from '$lib/wait.js'
+import { _locateInmate } from '../cameras/+server'
 
 const FILE = 'data/inmates.json'
 
@@ -45,7 +46,7 @@ async function init() {
             inmate: {
                 ...inmate, 
                 heartrate, resprate, bodytemp, 
-                urgency: 0, alerts: false
+                urgency: 0, alerts: false, camera: ''
             },
             heartRand, respRand, tempRand, fallRand
         }
@@ -116,6 +117,7 @@ function updateInmate(id: string) {
 
     i.inmate.alerts = Boolean(i.inmate.fall_alert || i.inmate.heart_alert || i.inmate.resp_alert || i.inmate.temp_alert)
 
+    i.inmate.camera = _locateInmate(id)
 }
 
 function rounded(func: () => number, dp: number = 2) {

@@ -113,8 +113,8 @@
         <slot />
     </main>
     <footer class="p-4 text-center text-gray-400">
-        <a class="underline" href="/wenkAI">Team <b class="font-mono">wenkAI</b></a> | <a class="underline" href="https://hacx.sg">HacX 2023</a><br/>
-        Designed by <a class="underline" href="https://ler.sg">Lam Eu Ler</a>
+        <a class="underline" href="/wenkAI">Team <b class="font-mono">wenkAI</b></a> | <a class="underline" href="https://hacx.sg"><b>HacX!</b> 2023</a><br/>
+        Designed by <a class="underline" href="https://ler.sg">Lam Eu Ler</a> | <a class="underline" href="https://github.com/lameuler/prism-dashboard">View on GitHub</a>
     </footer>
 </div>
 
