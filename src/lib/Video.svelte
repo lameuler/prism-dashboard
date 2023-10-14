@@ -4,5 +4,5 @@
 </script>
 
 <a href="/cameras/{id}">
-    <video class="rounded-lg" src={uri} muted loop autoplay></video>
+    <video class="rounded-lg" src={uri} muted loop autoplay playsinline crossorigin="anonymous"></video>
 </a>
