@@ -32,9 +32,9 @@ async function init() {
     const tempStd = d3.randomNormal(0.4, 0.2)
     inmates.forEach(inmate => {
         // randomly generate random number generators
-        const heartRand = d3.randomNormal(heartMean(), Math.max(heartStd(),1))
-        const respRand = d3.randomNormal(respMean(), Math.max(respStd(),0.1))
-        const tempRand = d3.randomNormal(tempMean(), Math.max(tempStd(),0.1))
+        const heartRand = rounded(d3.randomNormal(heartMean(), Math.max(heartStd(),1)))
+        const respRand = rounded(d3.randomNormal(respMean(), Math.max(respStd(),0.1)))
+        const tempRand = rounded(d3.randomNormal(tempMean(), Math.max(tempStd(),0.1)))
         const fallRand = d3.randomInt(8)
 
         const heartrate = Array(DATA_LEN).fill(0).map(heartRand)
@@ -116,6 +116,10 @@ function updateInmate(id: string) {
 
     i.inmate.alerts = Boolean(i.inmate.fall_alert || i.inmate.heart_alert || i.inmate.resp_alert || i.inmate.temp_alert)
 
+}
+
+function rounded(func: () => number, dp: number = 2) {
+    return () => Math.round(func() * 10**dp) / 10**dp
 }
 
 export async function GET() {
