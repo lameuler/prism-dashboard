@@ -41,7 +41,7 @@
             {/if}
         </svg>
     </div>
-    <span class:warn class="sm:w-20 transition-colors duration-300" class:hovered>{ format.format(data[current]) }</span>
+    <span class:warn class="sm:w-16 transition-colors duration-300" class:hovered>{ format.format(data[current]) }</span>
 </div>
 
 <style lang="postcss">

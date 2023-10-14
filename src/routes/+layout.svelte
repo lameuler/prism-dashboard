@@ -38,7 +38,7 @@
     setContext('inmates', inmates)
     setContext('inmates-refresh', refresh)
 
-    $: alerts = $inmates.inmates.filter(i => i.heart_alert || i.temp_alert || i.fall_alert)
+    $: alerts = $inmates.inmates.filter(i => i.alerts)
 
     let showing = false
     let alertList: HTMLDivElement | undefined = undefined
@@ -49,13 +49,23 @@
 
     onMount(schedule)
 
-    
+    let fullscreen: boolean | undefined = undefined;
+
+    onMount(() => {
+        fullscreen = document.fullscreenEnabled ? document.fullscreenElement !== null : undefined
+        document.addEventListener('fullscreenchange', () => fullscreen = document.fullscreenElement !== null)
+    })
+
+    function toggleFullscreen() {
+        if (fullscreen) document.exitFullscreen()
+        else document.documentElement.requestFullscreen()
+    }
     
 </script>
 
-<div class="flex flex-col h-full">
-    <header>
-        <section class="p-4 sm:p-8 flex flex-col md:flex-row gap-2 justify-between items-stretch md:items-center">
+<div class="flex flex-col h-full max-w-7xl mx-auto">
+    <header class="p-4 sm:p-8 flex items-baseline">
+        <section class="flex flex-col md:flex-row grow gap-2 justify-between items-stretch md:items-center">
             <div class="flex items-center gap-2 relative">
                 <a class="flex items-center gap-3" href="/">
                     <img class="h-8 w-8" src="/favicon96.png" alt=""/>
@@ -81,12 +91,29 @@
                 <Clock />
             </span>
         </section>
+        {#if typeof fullscreen === 'boolean' }
+            <button on:click={ toggleFullscreen } class="ml-2 p-2 -translate-y-0.5 rounded-full text-gray-400 hover:bg-gray-800 hover:text-gray-100">
+                <svg class="h-7 w-7" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    {#if !fullscreen }
+                        <path d="M4 8v-2a2 2 0 0 1 2 -2h2"></path>
+                        <path d="M4 16v2a2 2 0 0 0 2 2h2"></path>
+                        <path d="M16 4h2a2 2 0 0 1 2 2v2"></path>
+                        <path d="M16 20h2a2 2 0 0 0 2 -2v-2"></path>
+                    {:else}
+                        <path d="M15 19v-2a2 2 0 0 1 2 -2h2"></path>
+                        <path d="M15 5v2a2 2 0 0 0 2 2h2"></path>
+                        <path d="M5 15h2a2 2 0 0 1 2 2v2"></path>
+                        <path d="M5 9h2a2 2 0 0 0 2 -2v-2"></path>
+                    {/if}
+                </svg>
+            </button>
+        {/if}
     </header>
     <main class="grow">
         <slot />
     </main>
     <footer class="p-4 text-center text-gray-400">
-        Team <a href="/wenkAI"><b class="font-mono">wenkAI</b></a> | <a class="underline" href="https://hacx.sg">HacX</a> 2023<br/>
+        <a class="underline" href="/wenkAI">Team <b class="font-mono">wenkAI</b></a> | <a class="underline" href="https://hacx.sg">HacX 2023</a><br/>
         Designed by <a class="underline" href="https://ler.sg">Lam Eu Ler</a>
     </footer>
 </div>
