@@ -7,6 +7,7 @@
     import Clock from '$lib/Clock.svelte';
     import "../app.css";
     import AlertList from '$lib/AlertList.svelte';
+    import VoteButton from '$lib/VoteButton.svelte';
 
     export let data
 
@@ -116,6 +117,7 @@
         <a class="underline" href="/wenkAI">Team <b class="font-mono">wenkAI</b></a> | <a class="underline" href="https://hacx.sg"><b>HacX!</b> 2023</a><br/>
         Designed by <a class="underline" href="https://ler.sg">Lam Eu Ler</a> | <a class="underline" href="https://github.com/lameuler/prism-dashboard">View on GitHub</a>
     </footer>
+    <VoteButton/>
 </div>
 
 <svelte:head>

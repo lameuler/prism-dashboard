@@ -46,3 +46,11 @@ Then, start the process in pm2:
 ```bash
 sudo pm2 start "npm run preview -- --host --port 80" --name prism
 ```
+
+## Updating
+
+To update the hosted app after rebuilding, run `pm2 update`:
+
+```bash
+sudo pm2 update prism
+```
