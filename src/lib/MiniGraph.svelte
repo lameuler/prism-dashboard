@@ -33,7 +33,7 @@
 </script>
 
 <div class="flex h-full w-full items-center text-xl font-bold">
-    <div class="hidden lg:block h-full grow mr-4 cursor-crosshair" bind:clientHeight bind:clientWidth>
+    <div class="hidden lg:block h-10 grow mr-4 cursor-crosshair" bind:clientHeight bind:clientWidth>
         <svg class="absolute" bind:this={ svg } height={clientHeight} width={clientWidth} on:mousemove={ handleMouseMove } on:mouseleave={ () => {current = data.length - 1; console.log("leave")} } role="figure">
             {#if isFinite(clientHeight) && isFinite(clientWidth)}
             <path class="stroke-slate-300" fill="none" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" d={line(data)} />
@@ -41,7 +41,7 @@
             {/if}
         </svg>
     </div>
-    <span class:warn class="sm:w-16 transition-colors duration-300" class:hovered>{ format.format(data[current]) }</span>
+    <span class:warn class="sm:w-16 transition-colors duration-300" class:hovered>{ isFinite(data[current]) ? format.format(data[current]) : '--' }</span>
 </div>
 
 <style lang="postcss">

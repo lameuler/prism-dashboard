@@ -1,13 +1,20 @@
 <script lang="ts">
     import { LINK } from '$lib/vote.js';
+    import { onMount } from 'svelte';
 
-    export let data
+    let dots = 3
 
-    let dots = 0
-    setInterval(() => {
-        dots++
-        dots = dots % 4
-    }, data.interval)
+    onMount(() => {
+        const params = new URLSearchParams(window.location.search)
+        let interval = parseInt(params.get('interval') ?? '')
+        interval = isFinite(interval) ? interval : 250
+        interval = Math.max(interval, 100)
+
+        setInterval(() => {
+            dots++
+            dots = dots % 4
+        }, interval)
+    })
 </script>
 
 <main class="flex items-center justify-center h-full w-full text-[#00FF00]">

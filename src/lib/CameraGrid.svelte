@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
     import Section from './Section.svelte';
     import Video from './Video.svelte';
-    import type { Camera } from './cameras';
+    import { sortCameras, type Camera } from './cameras';
     import AutoplayAlert from './AutoplayAlert.svelte';
 
     export let cameras: Camera[]
@@ -17,7 +17,7 @@
         clearTimeout(timeout)
         refreshing = true
         const result: Camera[] = await (await fetch('/api/cameras')).json()
-        cameras = result
+        cameras = sortCameras(result)
         refreshing = false
         schedule()
     }

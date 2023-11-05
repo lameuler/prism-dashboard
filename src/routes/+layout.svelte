@@ -3,7 +3,7 @@
     import { onMount, setContext } from 'svelte';
     import { fly } from 'svelte/transition'
     import { page } from '$app/stores';
-    import type { Inmate } from '$lib/inmates';
+    import { generateData, type Inmate } from '$lib/inmates';
     import Clock from '$lib/Clock.svelte';
     import "../app.css";
     import AlertList from '$lib/AlertList.svelte';
@@ -17,13 +17,19 @@
     const interval = 60_000
     let timeout: number | NodeJS.Timeout | undefined = undefined
 
-    const inmates = writable({ inmates: data.inmates as Inmate[], refreshing: false })
+    const inmates = writable({ inmates: data.inmates, refreshing: true })
 
     async function refresh() {
         clearTimeout(timeout)
         $inmates = { inmates: $inmates.inmates, refreshing: true }
         const result = await fetch('/api/inmates')
-        $inmates = { inmates: (await result.json()).inmates, refreshing: false }
+        $inmates = {
+            inmates: generateData(
+                (await result.json()).inmates,
+                data.cameras.map(c => c.id)
+            ),
+            refreshing: false
+        }
         schedule()
     }
 
@@ -48,7 +54,7 @@
         if (!alertList?.contains(event.target as Node)) showing = false
     }
 
-    onMount(schedule)
+    onMount(refresh)
 
     let fullscreen: boolean | undefined = undefined;
 
