@@ -10,6 +10,8 @@ Dashboard for monitoring the vitals signs (heart rate, respiratory rate, body te
 
 Visit the demo site: <https://prism.ler.sg>
 
+> Note: The demo site is no longer running off this `main` branch. The demo site is running an archive of this web app which has been converted into a static site with client side data generation rather than the original server generation and rendering. See the `archive` branch for more details.
+
 ## Developing
 
 Start a development server:
